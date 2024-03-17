@@ -4,7 +4,8 @@
 	"name": "awtrix3",
 	"build": {
 		"dockerfile": "Dockerfile"
-	}
+	},
+	"mounts": ["type=bind,source=/dev/,target=/dev/"]
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
