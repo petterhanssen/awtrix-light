@@ -119,13 +119,11 @@ void handleSerialMessaging() {
       buffer[bytesRead++] = Serial.read(); // Read the incoming byte and store it in the buffer
       delay(2); 
     }
-  DisplayManager.generateNotification(1, buffer);
-  Serial.println(String(buffer));
+  DisplayManager.nextApp();
   memset(buffer, 0, sizeof(buffer));
     // Serial.println("Received: " + String(buffer)); // Print the received string
   }
 }
-
 
 void loop()
 {

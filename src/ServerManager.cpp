@@ -342,40 +342,45 @@ void ServerManager_::loadSettings()
     return;
 }
 
-void ServerManager_::sendButton(byte btn, bool state)
-{
-    if (BUTTON_CALLBACK == "")
-        return;
+void ServerManager_::sendButton(byte btn, bool state) {
     static bool btn0State, btn1State, btn2State;
     String payload;
-    switch (btn)
-    {
-    case 0:
-        if (btn0State != state)
-        {
-            btn0State = state;
-            payload = "button=left&state=" + String(state);
-        }
-        break;
-    case 1:
-        if (btn1State != state)
-        {
-            btn1State = state;
-            payload = "button=middle&state=" + String(state);
-        }
-        break;
-    case 2:
-        if (btn2State != state)
-        {
-            btn2State = state;
-            payload = "button=right&state=" + String(state);
-        }
-        break;
-    default:
-        return;
+    switch (btn) {
+        case 0:
+            if (btn0State != state)
+            {
+                btn0State = state;
+                payload = "button=left&state=" + String(state);
+            }
+            break;
+        case 1:
+            if (btn1State != state)
+            {
+                btn1State = state;
+                payload = "button=middle&state=" + String(state);
+            }
+            break;
+        case 2:
+            if (btn2State != state)
+            {
+                btn2State = state;
+                payload = "button=right&state=" + String(state);
+            }
+            break;
+        default:
+            return;
     }
-    if (!payload.isEmpty())
-    {
+
+
+
+    if (!payload.isEmpty()){
+        
+        Serial.println("BTN payload: " + payload);
+
+        if (BUTTON_CALLBACK == ""){
+            return;
+        }
+
         HTTPClient http;
         http.begin(BUTTON_CALLBACK);
         http.addHeader("Content-Type", "application/x-www-form-urlencoded");
