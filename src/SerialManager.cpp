@@ -16,6 +16,19 @@ SerialManager_ &SerialManager = SerialManager.getInstance();
 const int bufferSize = 256; // Adjust the buffer size as needed
 char buffer[256];   // Character array to store incoming data
 
+/**
+ * Example:
+ * 
+ * 
+{
+    "cmd": "custom",
+    "data": {
+        "name": "itx",
+        "text": "Monica 2",
+        "duration": 100
+    }
+}
+*/
 void SerialManager_::tick() {
     static StaticJsonDocument<256> json_doc;
       if (Serial.available() > 0) {
