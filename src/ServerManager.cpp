@@ -374,13 +374,9 @@ void ServerManager_::sendButton(byte btn, bool state) {
 
 
     if (!payload.isEmpty()){
-        
-        Serial.println("BTN payload: " + payload);
-
         if (BUTTON_CALLBACK == ""){
             return;
         }
-
         HTTPClient http;
         http.begin(BUTTON_CALLBACK);
         http.addHeader("Content-Type", "application/x-www-form-urlencoded");

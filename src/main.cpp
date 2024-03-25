@@ -35,6 +35,7 @@
 #include "PeripheryManager.h"
 #include "MQTTManager.h"
 #include "ServerManager.h"
+#include "SerialManager.h"
 #include "Globals.h"
 #include "UpdateManager.h"
 #include "timer.h"
@@ -109,31 +110,14 @@ void setup()
   delay(200);
   DisplayManager.setBrightness(BRIGHTNESS);
 }
-const int bufferSize = 256; // Adjust the buffer size as needed
-char buffer[bufferSize];   // Character array to store incoming data
 
-void handleSerialMessaging() {
- if (Serial.available() > 0) {
-    int bytesRead = 0; // Counter to track the number of bytes read
-    while (Serial.available() && bytesRead < bufferSize - 1) {
-      buffer[bytesRead++] = Serial.read(); // Read the incoming byte and store it in the buffer
-      delay(2); 
-    }
-  DisplayManager.nextApp();
-  memset(buffer, 0, sizeof(buffer));
-    // Serial.println("Received: " + String(buffer)); // Print the received string
-  }
-}
-
-void loop()
-{
+void loop() {
   timer_tick();
   ServerManager.tick();
   DisplayManager.tick();
   PeripheryManager.tick();
-  if (ServerManager.isConnected)
-  {
+  SerialManager.tick();
+  if (ServerManager.isConnected) {
     MQTTManager.tick();
   }
-  handleSerialMessaging();
 }

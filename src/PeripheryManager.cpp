@@ -10,6 +10,7 @@
 #include "Globals.h"
 #include "DisplayManager.h"
 #include "MQTTManager.h"
+#include "SerialManager.h"
 #include <ArduinoJson.h>
 #include <LittleFS.h>
 #include <LightDependentResistor.h>
@@ -454,8 +455,10 @@ void PeripheryManager_::tick()
         {
             MQTTManager.sendButton(2, button_left.read());
             ServerManager.sendButton(2, button_left.read());
+            SerialManager.sendButton(2, button_left.read());
             MQTTManager.sendButton(0, button_right.read());
             ServerManager.sendButton(0, button_right.read());
+            SerialManager.sendButton(0, button_right.read());
         }
         else
         {
@@ -463,10 +466,13 @@ void PeripheryManager_::tick()
             MQTTManager.sendButton(2, button_right.read());
             ServerManager.sendButton(0, button_left.read());
             ServerManager.sendButton(2, button_right.read());
+            SerialManager.sendButton(0, button_left.read());
+            SerialManager.sendButton(2, button_right.read());
         }
 
         MQTTManager.sendButton(1, button_select.read());
         ServerManager.sendButton(1, button_select.read());
+        SerialManager.sendButton(1, button_select.read());
     }
     else
     {
