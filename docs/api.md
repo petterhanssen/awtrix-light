@@ -78,8 +78,9 @@ AWTRIX will only wakeup after time or if you press the middle button once. There
   
 ## Sound Playback
 
-Play a RTTTL sound from the MELODIES folder:
-
+Play a RTTTL sound from the MELODIES folder.  
+If youre using a DFplayer, use the /sound API and enter the 4 digit number of your MP3.  
+  
 | MQTT Topic        | HTTP URL                     | Payload/Body        | HTTP Method |
 | ----------------- | ---------------------------- | ------------------- | ----------- |
 | `[PREFIX]/sound`  | `http://[IP]/api/sound`      | `{"sound":"alarm"}` | POST        |
@@ -176,7 +177,7 @@ Below are the properties you can utilize in the JSON object. **All keys are opti
 | `center` | boolean | Centers a short, non-scrollable text. | true | X | X |
 | `color` | string or array of integers | The text, bar or line color. | N/A | X | X |
 | `gradient` | Array of string or integers | Colorizes the text in a gradient of two given colors  | N/A | X | X |
-| `blinkText` | Integer | Blinks the text in an given interval, not compatible with gradient or rainbow | N/A | X | X |
+| `blinkText` | Integer | Blinks the text in an given interval in ms, not compatible with gradient or rainbow | N/A | X | X |
 | `fadeText` | Integer | Fades the text on and off in an given interval, not compatible with gradient or rainbow  | N/A | X | X |
 | `background` | string or array of integers | Sets a background color. | N/A | X | X |
 | `rainbow` | boolean | Fades each letter in the text differently through the entire RGB spectrum. | false | X | X |
@@ -185,7 +186,7 @@ Below are the properties you can utilize in the JSON object. **All keys are opti
 | `repeat` | integer | Sets how many times the text should be scrolled through the matrix before the app ends. | -1 | X | X |
 | `duration` | integer | Sets how long the app or notification should be displayed. | 5 | X | X |
 | `hold` | boolean | Set it to true, to hold your **notification** on top until you press the middle button or dismiss it via HomeAssistant. This key only belongs to notification. | false |  | X |
-| `sound` | string | The filename of your RTTTL ringtone file placed in the MELODIES folder (without extension). | N/A |  | X |
+| `sound` | string | The filename of your RTTTL ringtone file placed in the MELODIES folder (without extension). Or the 4 digit number of your MP3 if youre using a DFplayer | N/A |  | X |
 | `rtttl` | string | Allows to send the RTTTL sound string with the json. | N/A |  | X |
 | `loopSound` | boolean | Loops the sound or rtttl as long as the notification is running. | false |  | X |
 | `bar` | array of integers | Draws a bargraph. Without icon maximum 16 values, with icon 11 values. | N/A | X | X |
@@ -335,7 +336,7 @@ Directly transition to a desired app using its name.
 
 | MQTT Topic                   | HTTP URL                           | Payload/Body     | HTTP Method |
 | ---------------------------- | ---------------------------------- | ---------------- | ----------- |
-| `[PREFIX]/switch`            | `http://[IP]/api/switch`           | `{"name":"time"}` | POST       |
+| `[PREFIX]/switch`            | `http://[IP]/api/switch`           | `{"name":"Time"}` | POST       |
 
 **Built-in App Names**:
 - `Time`

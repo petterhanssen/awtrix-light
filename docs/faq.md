@@ -7,6 +7,8 @@ Welcome to the FAQ section. Here, you'll find answers to some of the most common
   - [Can I run AWTRIX 3 standalone?](#q-can-i-run-awtrix3-standalone)
   - [Can I use different matrix sizes other than 8x32?](#q-can-i-use-different-matrix-sizes-other-than-8x32)
   - [Error while flashing my Ulanzi clock](#q-why-am-i-getting-an-error-while-flashing-my-ulanzi-clock-with-the-awtrix-web-flasher)
+  - [I'm experiencing drawing glitches with my icons](#q-i39m-experiencing-drawing-glitches-with-my-icons)
+  - [I only have 192KB of free flash memory](#q-i-only-have-192kb-of-free-flash-memory-what39s-wrong)
   - [Accidentally touched DoNotTouch.json](#q-what-should-i-do-if-i-accidentally-touched-the-donottouchjson-file-in-awtrix-web-file-manager)
   - [Self-built AWTRIX displaying meaningless characters](#q-my-self-built-awtrix-device-is-displaying-meaningless-characters-on-the-matrix-what-should-i-do)
   - [Which firmware for building my own AWTRIX?](#q-i-want-to-build-my-own-awtrix-which-firmware-should-i-use)
@@ -23,6 +25,14 @@ A: Currently, AWTRIX is optimized for the Ulanzi Pixelclock, which supports a ma
 
 #### Q: Why Am I Getting an Error While Flashing My Ulanzi Clock with the AWTRIX Web Flasher?
 A: If you encounter errors during the flashing process, i recommend trying a different USB cable and USB port. Some users have reported issues with the original cable provided with the device.
+
+#### Q: I'm experiencing drawing glitches with my icons.
+A: The AWTRIX GIF renderer currently supports only 8-bit GIFs without transparency. If you notice graphic glitches on the matrix, try replacing transparent pixels with solid black. You can easily do this using an online tool like [this one](https://onlinegiftools.com/add-gif-background). 
+
+#### Q: I only have 192KB of free flash memory. What's wrong?
+A: The issue arises because Ulanzi uses a different partition table, resulting in a smaller SPIFFS partition.  
+To utilize the full 1350KB of flash memory, make sure to use the AWTRIX online flasher, which also writes to all other partitions.  
+The Ulanzi web updater only writes to the program partition.
 
 #### Q: What should I do if I accidentally touched the `DoNotTouch.json` file in AWTRIX Web File Manager?
 A: The `DoNotTouch.json` file contains settings such as:
